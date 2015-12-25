@@ -10,9 +10,10 @@ body {
 	height: 40%;
 	background: rgba($color-gray, .8);
 	overflow-y: auto;
+
 	.i-element {
-		min-height: 50px;
-		min-width: 50px;
+		min-height: 20px;
+		min-width: 20px;
 		padding: 10px;
 		margin: 10px;
 		border: 1px solid black;
