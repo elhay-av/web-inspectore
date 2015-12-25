@@ -1,0 +1,25 @@
+{
+  "name": "web-inspector",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-bump": "*",
+    "gulp-concat": "*",
+    "gulp-ext-replace": "*",
+    "gulp-if": "*",
+    "gulp-livereload": "*",
+    "gulp-minify-css": "*",
+    "gulp-notify": "*",
+    "gulp-plumber": "*",
+    "gulp-rename": "*",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "node-notifier": "*",
+    "path": "*"
+  },
+  "author": "Elhay Avichzer",
+  "license": "MIT"
+}
