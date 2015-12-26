@@ -24,6 +24,19 @@
 			hasChildes: false
 		};
 
+	function setStyle(){
+		var styleString = 'body{margin-bottom:40%}#inspector{position:fixed;bottom:0;left:0;width:100%;height:40%;background:rgba(128,128,128,.8);overflow-y:auto}#inspector *{box-sizing:border-box}#inspector.in-drag .i-element.drag-hover{box-shadow:0 0 0 3px #000 inset}#inspector.in-drag .i-element.drag-hover-left{box-shadow:3px 0 0 0 #000 inset}#inspector .i-element{min-height:20px;min-width:20px;padding:10px;margin:10px;border:1px solid #000;float:left}#inspector .i-element:not(.not-draggable){cursor:grab;cursor:-webkit-grab}#inspector .i-element:not(.not-draggable):active{cursor:grabbing;cursor:-webkit-grabbing}#inspector .i-element.original-while-dragging{pointer-events:none;opacity:.3}#inspector .i-element.active-drag{pointer-events:none;position:absolute;opacity:.8}#inspector .i-text{pointer-events:none;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}',
+			srtleTag = document.createElement('style');
+
+		if (srtleTag.styleSheet){
+			srtleTag.styleSheet.cssText = styleString;
+		} else {
+			srtleTag.appendChild(document.createTextNode(styleString));
+		}
+
+		document.head.appendChild(srtleTag);
+	}
+
 	function getColorByName(name) {
 		var charCode = '';
 
@@ -211,15 +224,17 @@
 			shaddowElLeft = dragHelper.$shaddowEl.getBoundingClientRect().left,
 			elementId = event.target.getAttribute('i-id');
 
-		while(i < chiledPositions[elementId].length){
-			if(i == 0 && chiledPositions[elementId][i].left > shaddowElLeft && event.target.childNodes[i+1].getAttribute('i-id') != dragHelper.elId){
+		while(chiledPositions[elementId] && (i < chiledPositions[elementId].length)){
+			if(i == 0 && chiledPositions[elementId][i].left > shaddowElLeft &&
+				event.target.childNodes[i+1].getAttribute('i-id') != dragHelper.elId){
 				dragHelper.$hoverOn = event.target.childNodes[i+1];
 				dragHelper.$hoverOn.classList.add('drag-hover-left');
 				break;
 			}
-			if(chiledPositions[elementId][i].left > shaddowElLeft &&
+			if( i > 0 &&
+				chiledPositions[elementId][i].left > shaddowElLeft &&
 				chiledPositions[elementId][i - 1].left < shaddowElLeft &&
-				event.target.childNodes[i+1].getAttribute('i-id') != dragHelper.elId ){
+				event.target.childNodes[i+1].getAttribute('i-id') != dragHelper.elId){
 				dragHelper.$hoverOn = event.target.childNodes[i+1];
 				dragHelper.$hoverOn.classList.add('drag-hover-left');
 				break;
@@ -327,6 +342,7 @@
 	}
 
 	function init() {
+		setStyle();
 		createInspector();
 		treeBuilder('', document.body.parentNode, 0);
 	}

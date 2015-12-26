@@ -11,13 +11,16 @@ body {
 	background: rgba($color-gray, .8);
 	overflow-y: auto;
 
+	* {
+		box-sizing: border-box;
+	}
 	&.in-drag {
 		.i-element {
 			&.drag-hover {
-				border-width: 3px;
+				box-shadow: 0 0 0 3px black inset;
 			}
 			&.drag-hover-left {
-				border-left-width: 3px;
+				box-shadow: 3px 0 0 0px black inset;
 			}
 		}
 	}
@@ -41,6 +44,7 @@ body {
 
 		&.original-while-dragging {
 			pointer-events: none;
+			opacity: .3;
 		}
 
 		&.active-drag {
