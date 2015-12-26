@@ -11,6 +11,16 @@ body {
 	background: rgba($color-gray, .8);
 	overflow-y: auto;
 
+	&.in-drag {
+		.i-element {
+			&.drag-hover {
+				border-width: 3px;
+			}
+			&.drag-hover-left {
+				border-left-width: 3px;
+			}
+		}
+	}
 	.i-element {
 		min-height: 20px;
 		min-width: 20px;
@@ -18,5 +28,32 @@ body {
 		margin: 10px;
 		border: 1px solid black;
 		float: left;
+
+		&:not(.not-draggable){
+			cursor: grab;
+			cursor: -webkit-grab;
+
+			&:active {
+				cursor: grabbing;
+				cursor: -webkit-grabbing;
+			}
+		}
+
+		&.original-while-dragging {
+			pointer-events: none;
+		}
+
+		&.active-drag {
+			pointer-events: none;
+			position: absolute;
+			opacity: .8;
+		}
+	}
+	.i-text {
+		pointer-events: none;
+		user-select: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
 	}
 }
